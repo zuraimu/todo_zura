@@ -1,0 +1,14 @@
+CREATE DATABASE todolist_ezura;
+
+CREATE TABLE todo(
+id int PRIMARY KEY AUTO_INCREMENT,
+title varchar(20) NOT null,
+priority varchar(5) NOT null DEFAULT '-',
+limit_date date
+);
+
+INSERT INTO todo(title, priority, limit_date) VALUES 
+	('テストテキスト','★★★','2015/06/20'),
+	('テストテキスト','★','2015/06/22'),
+	('テストテキスト','★★★','2015/06/20'),
+	('テストテキスト','★★',null);
