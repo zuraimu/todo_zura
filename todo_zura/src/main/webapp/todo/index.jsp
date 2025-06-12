@@ -16,10 +16,11 @@
 </head>
 
 <body>
-	
-	<!-- ヘッダー -->
-	<%@ include file="/todo/header.jsp" %>
 
+	<!-- ヘッダー -->
+	<%@ include file="/todo/header.jsp"%>
+
+	<!-- 本文  -->
 	<div class="bg-body-tertiary">
 		<div class="container py-2 mt-2">
 			<!-- 完了表示 -->
@@ -48,6 +49,8 @@
 
 			<!-- リスト表示 -->
 			<table class="table table-light">
+				
+				<!-- カラム設定 -->
 				<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -56,14 +59,19 @@
 						<th scope="col">期限</th>
 					</tr>
 				</thead>
+				
+				<!-- レコード表示 -->
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td class="text-primary"><a href="UpdateServlet">テストテキスト</a></td>
-						<td>★★</td>
-						<td>2015/06/20</td>
-					</tr>
+					<c:forEach var="form" items="${list}">
+						<tr>
+							<th scope="row">1</th>
+							<td><a href="UpdateServlet">${form.title}</a></td>
+							<td>${form.priority}</td>
+							<td>${form.limit}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
+				
 			</table>
 
 			<!-- 追加ボタン -->

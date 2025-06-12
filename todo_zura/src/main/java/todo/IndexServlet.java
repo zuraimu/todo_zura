@@ -13,6 +13,8 @@ public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		TodoService srv = new TodoService();
+		request.setAttribute("list", srv.findAll());
 		request.getRequestDispatcher("/todo/index.jsp").forward(request, response);
 	}
 	
