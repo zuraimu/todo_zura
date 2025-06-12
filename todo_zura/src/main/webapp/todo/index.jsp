@@ -57,7 +57,9 @@
 					<c:forEach var="form" items="${list}" varStatus="status">
 						<tr>
 							<th scope="row">${status.count}</th>
-							<td><a href="UpdateServlet?index=${status.count}">${form.title}</a></td>
+							<td>
+								<a href="UpdateServlet?index=${status.count}&title=${form.title}&priority=${form.priority}&limit=${form.limit}">${form.title}</a>
+							</td>
 							<td>${form.priority}</td>
 							<td>${form.limit}</td>
 						</tr>

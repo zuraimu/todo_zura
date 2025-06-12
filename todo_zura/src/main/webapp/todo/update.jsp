@@ -37,7 +37,7 @@
 						<div class="row mb-3">
 							<label for="title" class="col-sm-1 col-form-label text-end">題名</label>
 							<div class="col-sm-11">
-								<input type="text" class="form-control" name="title" id="title" placeholder="題名">
+								<input type="text" class="form-control" name="title" id="title" value=${title} placeholder="題名">
 							</div>
 						</div>
 
@@ -54,15 +54,15 @@
 							<legend class="col-form-label col-sm-1 pt-0 text-end">重要度</legend>
 							<div class="col-sm-10">
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="priority" id="pr1" value="★★★" checked> 
+									<input class="form-check-input" type="radio" name="priority" id="pr1" value="★★★" <c:if test="${priority eq '★★★'}">checked</c:if>> 
 									<label class="form-check-label" for="pr1"> ★★★ </label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="priority" id="pr2" value="★★"> 
+									<input class="form-check-input" type="radio" name="priority" id="pr2" value="★★" <c:if test="${priority eq '★★'}">checked</c:if>> 
 									<label class="form-check-label" for="pr2"> ★★ </label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="priority" id="pr3" value="★"> 
+									<input class="form-check-input" type="radio" name="priority" id="pr3" value="★" <c:if test="${priority eq '★'}">checked</c:if>> 
 									<label class="form-check-label" for="pr3"> ★ </label>
 								</div>
 							</div>
@@ -72,7 +72,7 @@
 						<div class="row mb-3">
 							<label for="limit" class="col-sm-1 col-form-label text-end">期限</label>
 							<div class="col-sm-11">
-								<input type="text" class="form-control" name="limit" id="limit" placeholder="期限">
+								<input type="text" class="form-control" name="limit" id="limit" value=${limit} placeholder="期限">
 							</div>
 						</div>
 

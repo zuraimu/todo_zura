@@ -18,12 +18,20 @@ import jakarta.servlet.http.HttpSession;
 public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//入力をフォワード
+		String title = request.getParameter("title");
+		String priority = request.getParameter("priority");
+		String limit = request.getParameter("limit");
+		request.setAttribute("title", title);
+		request.setAttribute("priority", priority);
+		request.setAttribute("limit", limit);
+				
+		//indexをsessionに代入
 		HttpSession session = request.getSession();
 		String index = request.getParameter("index");
 		session.setAttribute("index", index);
+		
 		request.getRequestDispatcher("/todo/update.jsp").forward(request, response);
 	}
 
