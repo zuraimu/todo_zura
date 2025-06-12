@@ -20,33 +20,25 @@
 	<!-- ヘッダー -->
 	<%@ include file="/todo/header.jsp"%>
 
+
 	<!-- 本文  -->
 	<div class="bg-body-tertiary">
 		<div class="container py-2 mt-2">
+		
 			<!-- 完了表示 -->
-			<div class="alert alert-success alert-dismissible fade show mt-4"
-				role="alert">
-				<h3>完了しました！</h3>
-				<ul>
-					<li>No.27のToDoを更新しました。</li>
-				</ul>
-				<button type="button" class="btn-close" data-bs-dismiss="alert"
-					aria-label="Close"></button>
-			</div>
-
-			<!-- エラー表示 -->
-			<div class="alert alert-danger alert-dismissible fade show"
-				role="alert">
-				<h3>エラーが発生しました！</h3>
-				<ul>
-					<li>題名は必須入力です。</li>
-					<li>題名は100文字以内にしてください。</li>
-					<li>期限は「YYYY/MM/DD」形式で入力してください。</li>
-				</ul>
-				<button type="button" class="btn-close" data-bs-dismiss="alert"
-					aria-label="Close"></button>
-			</div>
-
+			<c:if test="${success}">
+				<div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+					<h3>完了しました！</h3>
+					<ul><li>${successMsg}</li></ul>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</c:if>
+			<!-- session = false -->
+			<%
+    			session.removeAttribute("success");
+    			session.removeAttribute("successMsg");
+  			%>
+			
 			<!-- リスト表示 -->
 			<table class="table table-light">
 				
@@ -62,10 +54,10 @@
 				
 				<!-- レコード表示 -->
 				<tbody>
-					<c:forEach var="form" items="${list}">
+					<c:forEach var="form" items="${list}" varStatus="status">
 						<tr>
-							<th scope="row">1</th>
-							<td><a href="UpdateServlet">${form.title}</a></td>
+							<th scope="row">${status.count}</th>
+							<td><a href="UpdateServlet?index=${status.count}">${form.title}</a></td>
 							<td>${form.priority}</td>
 							<td>${form.limit}</td>
 						</tr>

@@ -22,53 +22,30 @@
 	<!-- 本文 -->
 	<div class="bg-body-tertiary">
 		<div class="container py-2">
-			<!-- 完了表示 -->
-			<div class="alert alert-success alert-dismissible fade show mt-2 p-2"
-				role="alert">
-				<h3>完了しました！</h3>
-				<ul>
-					<li>No.27のToDoを更新しました。</li>
-				</ul>
-				<button type="button" class="btn-close" data-bs-dismiss="alert"
-					aria-label="Close"></button>
-			</div>
 
 			<!-- エラー表示 -->
-			<div class="alert alert-danger alert-dismissible fade show mt-2 p-2"
-				role="alert">
-				<h3>エラーが発生しました！</h3>
-				<ul>
-					<li>題名は必須入力です。</li>
-					<li>題名は100文字以内にしてください。</li>
-					<li>期限は「YYYY/MM/DD」形式で入力してください。</li>
-				</ul>
-				<button type="button" class="btn-close" data-bs-dismiss="alert"
-					aria-label="Close"></button>
-			</div>
+			<%@include file="/todo/alertError.jsp" %>
 
 			<!-- 更新フォーム -->
 			<h5 class="mb-0">更新フォーム</h5>
 			<hr class="mt-0">
 			<div class="row">
 				<div class="offset-1 col-sm-11">
-					<form class="ms-5">
+					<form class="ms-5" method="post" action="UpdateServlet">
 
 						<!-- 題名  -->
 						<div class="row mb-3">
-							<label for="inputEmail3" class="col-sm-1 col-form-label text-end">題名</label>
+							<label for="title" class="col-sm-1 col-form-label text-end">題名</label>
 							<div class="col-sm-11">
-								<input type="text" class="form-control" id="inputEmail3"
-									placeholder="題名">
+								<input type="text" class="form-control" name="title" id="title" placeholder="題名">
 							</div>
 						</div>
 
 						<!-- 詳細 -->
 						<div class="row mb-3">
-							<label for="inputPassword3"
-								class="col-sm-1 col-form-label text-end">詳細</label>
+							<label for="inputPassword3" class="col-sm-1 col-form-label text-end">詳細</label>
 							<div class="col-sm-11">
-								<textarea rows="3" class="form-control" id="inputPassword3"
-									placeholder="詳細"></textarea>
+								<textarea rows="3" class="form-control" id="inputPassword3" placeholder="詳細"></textarea>
 							</div>
 						</div>
 
@@ -77,29 +54,25 @@
 							<legend class="col-form-label col-sm-1 pt-0 text-end">重要度</legend>
 							<div class="col-sm-10">
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="gridRadios"
-										id="gridRadios1" value="option1" checked> <label
-										class="form-check-label" for="gridRadios1"> ★★★ </label>
+									<input class="form-check-input" type="radio" name="priority" id="pr1" value="★★★" checked> 
+									<label class="form-check-label" for="pr1"> ★★★ </label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="gridRadios"
-										id="gridRadios2" value="option2"> <label
-										class="form-check-label" for="gridRadios2"> ★★ </label>
+									<input class="form-check-input" type="radio" name="priority" id="pr2" value="★★"> 
+									<label class="form-check-label" for="pr2"> ★★ </label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="gridRadios"
-										id="gridRadios3" value="option3"> <label
-										class="form-check-label" for="gridRadios3"> ★ </label>
+									<input class="form-check-input" type="radio" name="priority" id="pr3" value="★"> 
+									<label class="form-check-label" for="pr3"> ★ </label>
 								</div>
 							</div>
-
-							<!-- 期限 -->
 						</fieldset>
+						
+						<!-- 期限  -->
 						<div class="row mb-3">
-							<label for="inputEmail6" class="col-sm-1 col-form-label text-end">期限</label>
+							<label for="limit" class="col-sm-1 col-form-label text-end">期限</label>
 							<div class="col-sm-11">
-								<input type="text" class="form-control" id="inputEmail6"
-									placeholder="期限">
+								<input type="text" class="form-control" name="limit" id="limit" placeholder="期限">
 							</div>
 						</div>
 
@@ -108,9 +81,11 @@
 							<button type="submit" class="btn border"
 								style="background-color: white;">キャンセル</button>
 							<button type="submit" class="btn btn-primary">更新</button>
+							
 							<div class="ms-auto">
-								<button class="btn btn-danger">削除</button>
+								<a href="DeleteServlet" class="btn border btn-danger">削除</a>
 							</div>
+							
 						</div>
 
 
@@ -121,6 +96,7 @@
 		</div>
 
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 
 </body>
