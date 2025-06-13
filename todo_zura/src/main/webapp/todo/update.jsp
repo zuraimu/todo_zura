@@ -1,25 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+
 <!DOCTYPE html>
+
 <html lang="ja">
 
 <head>
-	<!-- BootStrap  -->
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-		crossorigin="anonymous">
-	<meta charset="UTF-8">
-	<title>update</title>
+	<c:set var="title" value="更新ページ" />
+	<%@ include file="/WEB-INF/jspf/include/header.jspf" %>
 </head>
 
 <body>
 
+	<!-- ヘッダー -->
+	<%@ include file="/WEB-INF/jspf/include/nav.jspf" %>
+
 	<!-- フォーム入力画面 -->
 	<c:set var="mode" value="update" />
 	<%@include file="/todo/form.jsp"%>
+	
+	<!-- スクリプト読み込み -->
+	<%@ include file="/WEB-INFO/jspf/include/script.jspf" %>
 
 </body>
 
