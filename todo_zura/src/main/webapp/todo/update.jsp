@@ -7,7 +7,7 @@
 <html lang="ja">
 
 <head>
-	<c:set var="title" value="更新ページ" />
+	<c:set var="pageTitle" value="更新" />
 	<%@ include file="/WEB-INF/jspf/include/header.jspf" %>
 </head>
 
@@ -15,13 +15,44 @@
 
 	<!-- ヘッダー -->
 	<%@ include file="/WEB-INF/jspf/include/nav.jspf" %>
-
-	<!-- フォーム入力画面 -->
-	<c:set var="mode" value="update" />
-	<%@include file="/todo/form.jsp"%>
 	
-	<!-- スクリプト読み込み -->
-	<%@ include file="/WEB-INFO/jspf/include/script.jspf" %>
+	
+	<!-- 本文 -->
+	<div class="bg-body-tertiary">
+		<div class="container py-2 bg-body-tertiary">
+		
+			<!-- エラー表示 -->
+			<%@include file="/WEB-INF/jspf/include/alertError.jspf"%>
+			
+			<!-- フォームタイトル -->
+			<%@ include file="/WEB-INF/jspf/include/formTitle.jspf" %>
+		
+			<!-- フォーム入力画面 -->
+			<!-- フォーム入力画面 -->
+			<div class="row">
+				<div class="offset-1 col-sm-11">
+					<form method="post" action="EntryServlet">
+					
+						<!-- 入力フォーム -->
+						<%@ include file="/WEB-INF/jspf/include/formFeilds.jspf" %>
+						
+						<!-- ボタン -->
+						<div class="d-flex gap-2 offset-1 col-sm-11">
+							<a href="IndexServlet" class="btn border" style="background-color: white;">キャンセル</a>
+							<button type="submit" class="btn btn-primary">更新</button>
+							<div class="ms-auto">
+								<a href="DeleteServlet" class="btn border btn-danger">削除</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<!-- スクリプト読み込み -->
+			<%@ include file="/WEB-INF/jspf/include/script.jspf" %>
+			
+		</div>
+	</div>
 
 </body>
 

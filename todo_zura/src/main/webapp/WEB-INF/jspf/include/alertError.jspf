@@ -13,9 +13,3 @@
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
 </c:if>
-
-<!-- session = false -->
-<%
-session.removeAttribute("error");
-session.removeAttribute("errorAry");
-%>

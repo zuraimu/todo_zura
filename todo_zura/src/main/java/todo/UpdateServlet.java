@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
@@ -35,34 +34,33 @@ public class UpdateServlet extends HttpServlet {
 		request.getRequestDispatcher("/todo/update.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		int index = Integer.parseInt((String)session.getAttribute("index"));
-
 		
-		List<String> errorAry = new ArrayList<>(); //エラー複数取得用
-
-		//フォームの値取得
 		String priority = request.getParameter("priority");
 		String title = request.getParameter("title");
-		if (isTitleEmp(title)) {
-			errorAry.add("タイトルは入力必須です。");
-		}
-		//String -> Date　変換処理
+		
+		InputError ie = new InputError();
+		List<String> errorAry = ie.inputError(title, priority);
+		
 		String limitStr = request.getParameter("limit");
 		Date limit = null;
 		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			java.util.Date utilDate = sdf.parse(limitStr);
 			limit = new Date(utilDate.getTime());
 		} catch (ParseException e) {
-			errorAry.add("yyyy/MM/ddの形式で入力してください。");
+			errorAry.add("yyyy-MM-ddの形式で入力してください。");
 		}
 
 		if (errorAry.size() > 0) {
-			session.setAttribute("error", true);
-			session.setAttribute("errorAry", errorAry);
+			request.setAttribute("error", true);
+			request.setAttribute("errorAry", errorAry);
+			request.setAttribute("title", title);
+			request.setAttribute("priority", priority);
+			request.setAttribute("limit", limitStr);
 			request.getRequestDispatcher("/todo/update.jsp").forward(request, response);
 		} else {
 			TodoService tds = new TodoService();
@@ -78,10 +76,4 @@ public class UpdateServlet extends HttpServlet {
 		}
 
 	}
-
-	//タイトルが空かどうか
-	private static boolean isTitleEmp(String title) {
-		return (title == null || title.isEmpty());
-	}
-
 }
