@@ -15,11 +15,15 @@
 
 	<!-- ヘッダー -->
 	<%@ include file="/WEB-INF/jspf/include/nav.jspf" %>
-
+	
 	<!-- 本文  -->
 	<div class="bg-body-tertiary">
 		<div class="container py-2 mt-2">
 		
+			<!-- Priorityのカウントをしゅとくし、重要度の円グラフを作成 -->
+			<%@ include file="/WEB-INF/jspf/include/getPriorityMap.jspf" %>
+			<canvas id="chart" width="300" height="300" style="max-width: 100%;"></canvas>
+			
 			<!-- 完了表示 -->
 			<%@ include file="/WEB-INF/jspf/include/success.jspf" %>
 			
@@ -33,7 +37,7 @@
 	</div>
 	
 	<!-- スクリプト読み込み -->
-	<%@ include file="/WEB-INF/jspf/include/script.jspf" %>
+	<%@ include file="/WEB-INF/jspf/include/readScript.jspf" %>
 	
 </body>
 

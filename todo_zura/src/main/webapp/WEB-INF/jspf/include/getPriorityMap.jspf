@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<script>
+		window.chartLabels = [
+			<c:forEach var="label" items="${labels}" varStatus="s">
+				"${label}"<c:if test="${!s.last}">,</c:if>
+			</c:forEach>
+		];
+		window.chartValues = [
+			<c:forEach var="val" items="${values}" varStatus="s">
+				${val}<c:if test="${!s.last}">,</c:if>
+			</c:forEach>
+		];
+	</script>
