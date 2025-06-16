@@ -16,7 +16,6 @@
 	<!-- ヘッダー -->
 	<%@ include file="/WEB-INF/jspf/include/nav.jspf" %>
 
-
 	<!-- 本文  -->
 	<div class="bg-body-tertiary">
 		<div class="container py-2 mt-2">

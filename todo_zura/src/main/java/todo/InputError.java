@@ -1,12 +1,14 @@
 package todo;
 
-import java.util.ArrayList;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class InputError {
-	public List<String> inputError(String title, String priority){
-		
-		List<String> errorAry = new ArrayList<>(); //エラー複数取得用
+public class InputError{
+	
+	//形式が正確かを判定して、だめならエラーリストに代入。結果としてlimitのDate型を返す。
+	public Date inputError(List<String> errorAry, String title, String priority, String limitStr){
 		
 		if (isEmp(title)) {
 			errorAry.add("タイトルは入力必須です。");
@@ -16,7 +18,16 @@ public class InputError {
 			errorAry.add("重要度の入力をわすれてないか？");
 		}
 		
-		return errorAry;
+		Date limit = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			java.util.Date utilDate = sdf.parse(limitStr);
+			limit = new Date(utilDate.getTime());
+		} catch (ParseException e) {
+			errorAry.add("yyyy-MM-ddの形式で入力してください。");
+		}
+		
+		return limit;
 	}
 	
 	private static boolean isEmp(String str) {

@@ -2,8 +2,7 @@ package todo;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
@@ -23,24 +22,18 @@ public class EntryServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//値の取得と代入
 		HttpSession session = request.getSession();
-		
 		String priority = request.getParameter("priority");
 		String title = request.getParameter("title");
-		
-		InputError ie = new InputError();
-		List<String> errorAry = ie.inputError(title, priority);
-		//String -> Date　変換処理
 		String limitStr = request.getParameter("limit");
-		Date limit = null;
-		try { 
-		    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		    java.util.Date utilDate = sdf.parse(limitStr);
-		    limit = new Date(utilDate.getTime());
-		} catch (ParseException e) {
-		    errorAry.add("yyyy-MM-ddの形式で入力してください。");
-		}
 		
+		//エラーの検出
+		InputError ie = new InputError();
+		List<String> errorAry = new ArrayList<>();
+		Date limit = ie.inputError(errorAry,title, priority,limitStr);
+				
+		//エラーが出た場合フォワード
 		if(errorAry.size() > 0) {
 			request.setAttribute("error", true);
 			request.setAttribute("errorAry", errorAry);
@@ -48,11 +41,13 @@ public class EntryServlet extends HttpServlet {
 			request.setAttribute("priority",priority);
 			request.setAttribute("limit",limitStr);
 			request.getRequestDispatcher("/todo/entry.jsp").forward(request, response);
+			
+		//エラーがなければDB追加				
 		}else {
-			//DBへの追加
 			TodoService tds = new TodoService();
 			InsertForm ef = new InsertForm(title,priority,limit);
 			tds.register(ef);
+			
 			//成功メッセージの表示
 			session.setAttribute("success", true);
 			session.setAttribute("successMsg", title + "(" + limit +")を追加しました。");

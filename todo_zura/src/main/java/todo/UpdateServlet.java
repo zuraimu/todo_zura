@@ -2,8 +2,7 @@ package todo;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
@@ -36,25 +35,20 @@ public class UpdateServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		//値の取得と代入
 		HttpSession session = request.getSession();
 		int index = Integer.parseInt((String)session.getAttribute("index"));
-		
 		String priority = request.getParameter("priority");
 		String title = request.getParameter("title");
-		
-		InputError ie = new InputError();
-		List<String> errorAry = ie.inputError(title, priority);
-		
 		String limitStr = request.getParameter("limit");
-		Date limit = null;
-		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			java.util.Date utilDate = sdf.parse(limitStr);
-			limit = new Date(utilDate.getTime());
-		} catch (ParseException e) {
-			errorAry.add("yyyy-MM-ddの形式で入力してください。");
-		}
-
+		
+		//取得した値の形式検査
+		InputError ie = new InputError();
+		List<String> errorAry = new ArrayList<>();
+ 		Date limit = ie.inputError(errorAry,title, priority,limitStr);
+		
+ 		//エラーが発生した場合フォワード
 		if (errorAry.size() > 0) {
 			request.setAttribute("error", true);
 			request.setAttribute("errorAry", errorAry);
@@ -62,6 +56,8 @@ public class UpdateServlet extends HttpServlet {
 			request.setAttribute("priority", priority);
 			request.setAttribute("limit", limitStr);
 			request.getRequestDispatcher("/todo/update.jsp").forward(request, response);
+			
+		//エラーがなければDB追加
 		} else {
 			TodoService tds = new TodoService();
 			UpdateForm uf = new UpdateForm(index, title, priority, limit);
