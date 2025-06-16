@@ -6,6 +6,7 @@
 	<!-- カラム設定 -->
 	<thead>
 		<tr>
+			<th scope="col">check</th>
 			<th scope="col">#</th>
 			<th scope="col">題名</th>
 			<th scope="col">重要度</th>
@@ -18,8 +19,8 @@
 		<c:forEach var="form" items="${list}" varStatus="status">
 			<tr>
 				<th scope="row">${status.count}</th>
-				<td><a
-					href="UpdateServlet?index=${status.count}&title=${form.title}&priority=${form.priority}&limit=${form.limit}">${form.title}</a>
+				<td>
+					<a href="UpdateServlet?index=${status.count}&title=${form.title}&priority=${form.priority}&limit=${form.limit}">${form.title}</a>
 				</td>
 				<td>${form.priority}</td>
 				<td>${form.limit}</td>
@@ -28,3 +29,7 @@
 	</tbody>
 
 </table>
+
+
+
+<!-- ここから -->

@@ -19,20 +19,24 @@
 	<!-- 本文  -->
 	<div class="bg-body-tertiary">
 		<div class="container py-2 mt-2">
-		
-			<!-- Priorityのカウントをしゅとくし、重要度の円グラフを作成 -->
-			<%@ include file="/WEB-INF/jspf/include/getPriorityMap.jspf" %>
-			<canvas id="chart" width="300" height="300" style="max-width: 100%;"></canvas>
+			<div class="row">
+				<div class="col-lg-4">
+					<!-- Priorityのカウントをしゅとくし、重要度の円グラフを作成 -->
+					<%@ include file="/WEB-INF/jspf/include/getPriorityMap.jspf" %>
+					<canvas id="chart" width="300" height="300" style="max-width: 100%;"></canvas>
+				</div>
 			
-			<!-- 完了表示 -->
-			<%@ include file="/WEB-INF/jspf/include/success.jspf" %>
+				<div class="col-lg-8">
+					<!-- 完了表示 -->
+					<%@ include file="/WEB-INF/jspf/include/success.jspf" %>
 			
-			<!-- リスト表示 -->
-			<%@ include file="/WEB-INF/jspf/include/list.jspf" %>
+					<!-- リスト表示 -->
+					<%@ include file="/WEB-INF/jspf/include/list.jspf" %>
 
-			<!-- 追加フォーム遷移 -->
-			<a href="EntryServlet" class="btn btn-primary">追加</a>
-			
+					<!-- 追加フォーム遷移 -->
+					<a href="EntryServlet" class="btn btn-primary">追加</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	

@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<div
+	class="container d-flex align-items-center justify-content-center min-vh-100">
+	<div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+		<h3 class="text-center mb-4">${pageTitle}</h3>
+		
+		<!-- エラー表示 -->
+		<%@include file="/WEB-INF/jspf/include/alertError.jspf"%>
+		<!-- 完了表示 -->
+		<%@ include file="/WEB-INF/jspf/include/success.jspf" %>
+		<form method="post" action="${pageLink}">
+			<div class="mb-3">
+				<label for="user" class="form-label">ユーザーネーム</label> 
+				<input type="text" class="form-control" name="user" id="user">
+			</div>
+			<div class="mb-3">
+				<label for="pass" class="form-label">パスワード</label>
+				<input type="password" class="form-control" name="pass" id="pass">
+			</div>
+
+			<c:if test='${pageTitle eq "ログイン"}'>
+				<!-- ボタン -->
+				<div class="d-flex gap-2 col-sm-11">
+					<button type="submit" class="btn btn-primary">ログイン</button>
+					<div class="ms-auto">
+						<a href="SignUpServlet" class="btn border"
+							style="background-color: lightgray">アカウント作成へ</a>
+					</div>
+				</div>
+			</c:if>
+			<c:if test='${pageTitle eq "アカウント作成"}'>
+				<!-- ボタン -->
+				<div class="d-flex gap-2 col-sm-11">
+					<button type="submit" class="btn btn-primary">アカウント作成</button>
+					<div class="ms-auto">
+						<a href="LoginServlet" class="btn border"
+							style="background-color: lightgray">ログイン画面へ</a>
+					</div>
+				</div>
+			</c:if>
+		</form>
+	</div>
+</div>

@@ -4,5 +4,9 @@
 <nav class="navbar">
 	<div class="container">
 		<span class="navbar-text" style="font-size: 30px;"> Todoリスト </span>
+		<div class="ms-auto">
+			<span class="me-3">ユーザー：${user}</span>
+ 			<a href="LoginServlet" class="btn btn-outline-danger">ログアウト</a>
+		</div>
 	</div>
 </nav>

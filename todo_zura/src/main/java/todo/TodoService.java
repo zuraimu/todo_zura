@@ -15,12 +15,12 @@ public class TodoService {
 		String sql = "SELECT * FROM todo";
 		List<IndexForm> list = new ArrayList<IndexForm>();
 
-		try (Connection conn = Util.getConnection();
+		try (Connection conn = Util.getTodoConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
-				IndexForm m = new IndexForm(rs.getString("title"), rs.getString("priority"), rs.getDate("limit_date"));
+				IndexForm m = new IndexForm(rs.getString("title"), rs.getString("priority"), rs.getDate("limit_date"),rs.getString("check"));
 				list.add(m);
 			}
 			return list;
@@ -36,7 +36,7 @@ public class TodoService {
 	public void register(InsertForm form) {
 		String sql = "Insert into todo(title,priority,limit_date) values(?,?,?)";
 
-		try (Connection conn = Util.getConnection();
+		try (Connection conn = Util.getTodoConnection();
 				PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setString(1, form.getTitle());
 			ps.setString(2, form.getPriority());
@@ -52,7 +52,7 @@ public class TodoService {
 		String sql = "UPDATE todo SET title=?,priority=?,limit_date=? WHERE id = (SELECT id FROM (SELECT id FROM todo ORDER BY id ASC LIMIT 1 OFFSET ?) AS sub)";
 
 		try (
-				Connection conn = Util.getConnection();
+				Connection conn = Util.getTodoConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);) {
 
 			
@@ -70,7 +70,7 @@ public class TodoService {
 
 	public void destroy(int index) {
 		String sql = "DELETE FROM todo WHERE id = (SELECT id FROM (SELECT id FROM todo ORDER BY id ASC LIMIT 1 OFFSET ?) AS sub)";
-		try (Connection conn = Util.getConnection();
+		try (Connection conn = Util.getTodoConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setInt(1, index - 1);
 			ps.executeUpdate();

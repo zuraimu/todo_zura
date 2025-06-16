@@ -5,8 +5,7 @@
 <div class="row mb-3">
 	<label for="title" class="col-sm-1 col-form-label text-end">題名</label>
 	<div class="col-sm-11">
-		<input type="text" class="form-control" name="title" id="title"
-			placeholder="題名" value="${empty title ? '' : title }">
+		<input type="text" class="form-control" name="title" id="title" placeholder="題名" value="${empty title ? '' : title }">
 	</div>
 </div>
 
@@ -14,8 +13,7 @@
 <div class="row mb-3">
 	<label for="inputPassword3" class="col-sm-1 col-form-label text-end">詳細</label>
 	<div class="col-sm-11">
-		<textarea rows="3" class="form-control" id="inputPassword3"
-			placeholder="詳細"></textarea>
+		<textarea rows="3" class="form-control" id="inputPassword3" placeholder="詳細"></textarea>
 	</div>
 </div>
 

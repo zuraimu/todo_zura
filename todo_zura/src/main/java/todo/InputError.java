@@ -30,7 +30,18 @@ public class InputError{
 		return limit;
 	}
 	
+	public void inputError(List<String> errorAry, String user, String pass) {
+		if (isEmp(user)) {
+			errorAry.add("ユーザー名を入力してください");
+		}
+		
+		if(isEmp(pass)) {
+			errorAry.add("パスワードを入力してください");
+		}
+	}
+	
 	private static boolean isEmp(String str) {
 		return (str == null || str.isEmpty());
 	}
+	
 }

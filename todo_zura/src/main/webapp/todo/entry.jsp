@@ -43,13 +43,10 @@
 					</form>
 				</div>
 			</div>
-			
-			<!-- スクリプト読み込み -->
-			<%@ include file="/WEB-INF/jspf/include/script.jspf" %>
-			
 		</div>
 	</div>
-	
+	<!-- スクリプト読み込み -->
+	<%@ include file="/WEB-INF/jspf/include/script.jspf" %>
 </body>
 
 </html>
