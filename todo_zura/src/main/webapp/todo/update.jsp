@@ -28,7 +28,6 @@
 			<%@ include file="/WEB-INF/jspf/include/formTitle.jspf" %>
 		
 			<!-- フォーム入力画面 -->
-			<!-- フォーム入力画面 -->
 			<div class="row">
 				<div class="offset-1 col-sm-11">
 					<form method="post" action="EntryServlet">
@@ -49,7 +48,7 @@
 			</div>
 			
 			<!-- スクリプト読み込み -->
-			<%@ include file="/WEB-INF/jspf/include/script.jspf" %>
+			<%@ include file="/WEB-INF/jspf/include/readScript.jspf" %>
 			
 		</div>
 	</div>

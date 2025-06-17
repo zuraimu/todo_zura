@@ -20,7 +20,12 @@ public class TodoService {
 				ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
-				IndexForm m = new IndexForm(rs.getString("title"), rs.getString("priority"), rs.getDate("limit_date"),rs.getString("check"));
+				IndexForm m = new IndexForm(
+						rs.getInt("id"),
+						rs.getString("title"),
+						rs.getString("priority"),
+						rs.getDate("limit_date"),
+						rs.getBoolean("is_done"));
 				list.add(m);
 			}
 			return list;
@@ -55,14 +60,13 @@ public class TodoService {
 				Connection conn = Util.getTodoConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);) {
 
-			
 			ps.setString(1, form.getTitle());
 			ps.setString(2, form.getPriority());
 			ps.setDate(3, form.getLimit());
-			ps.setInt(4, form.getIndex()-1);
-			
+			ps.setInt(4, form.getIndex() - 1);
+
 			ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -74,6 +78,24 @@ public class TodoService {
 				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setInt(1, index - 1);
 			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateDoneStatus(int id, boolean done) {
+		String sql = "UPDATE todo SET is_done = ? WHERE id = ?";
+
+		try (
+				Connection conn = Util.getTodoConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);) {
+
+			
+			ps.setBoolean(1, done);
+			ps.setInt(2, id);
+
+			ps.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

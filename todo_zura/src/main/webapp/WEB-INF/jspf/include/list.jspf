@@ -1,16 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<div class="mb-2">
+  <label for="filter-select" class="form-label">表示フィルター：</label>
+  <select id="filter-select" class="form-select" style="max-width: 200px;">
+    <option value="all">すべて表示</option>
+    <option value="done">完了のみ</option>
+    <option value="undone">未完了のみ</option>
+  </select>
+</div>
+
 <table class="table table-light">
 
 	<!-- カラム設定 -->
 	<thead>
 		<tr>
-			<th scope="col">check</th>
 			<th scope="col">#</th>
 			<th scope="col">題名</th>
 			<th scope="col">重要度</th>
 			<th scope="col">期限</th>
+			<th scope="col">状態</th>
 		</tr>
 	</thead>
 
@@ -20,16 +29,15 @@
 			<tr>
 				<th scope="row">${status.count}</th>
 				<td>
-					<a href="UpdateServlet?index=${status.count}&title=${form.title}&priority=${form.priority}&limit=${form.limit}">${form.title}</a>
+					<a href="UpdateServlet?index=${status.count}&id=${form.id}&title=${form.title}&priority=${form.priority}&limit=${form.limit_date}">${form.title}</a>
 				</td>
 				<td>${form.priority}</td>
-				<td>${form.limit}</td>
+				<td>${form.limit_date}</td>
+				<td>
+					<input type="checkbox" class="check-item" data-id="${form.id}" ${form.done ? "checked" : ""} />
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 
 </table>
-
-
-
-<!-- ここから -->

@@ -21,12 +21,15 @@
 		<div class="container py-2 mt-2">
 			<div class="row">
 				<div class="col-lg-4">
+				
 					<!-- Priorityのカウントをしゅとくし、重要度の円グラフを作成 -->
 					<%@ include file="/WEB-INF/jspf/include/getPriorityMap.jspf" %>
 					<canvas id="chart" width="300" height="300" style="max-width: 100%;"></canvas>
+					
 				</div>
 			
 				<div class="col-lg-8">
+				
 					<!-- 完了表示 -->
 					<%@ include file="/WEB-INF/jspf/include/success.jspf" %>
 			
@@ -35,6 +38,7 @@
 
 					<!-- 追加フォーム遷移 -->
 					<a href="EntryServlet" class="btn btn-primary">追加</a>
+					
 				</div>
 			</div>
 		</div>

@@ -5,7 +5,14 @@
 	crossorigin="anonymous"></script>
 
 <!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
 
 <!-- 円グラフ操作 -->
 <script src="${pageContext.request.contextPath}/js/Chart-config.js" defer></script>
+
+<script src="${pageContext.request.contextPath}/js/checkboxHandler.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/Filter.js"></script>

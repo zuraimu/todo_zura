@@ -3,28 +3,27 @@ package todo;
 import java.sql.Date;
 
 public class IndexForm {
+	private int id;
 	private String title;
 	private String priority;
-	private Date limit;
-	private String check;
+	private Date limit_date;
+	private boolean is_done;
 
-	public IndexForm(String title, String priority, Date limit, String check){
+	public IndexForm(int id, String title, String priority, Date limit_date, boolean is_done) {
+		this.id = id;
 		this.title = title;
 		this.priority = priority;
-		this.limit = limit;
-		this.check = check;
+		this.limit_date = limit_date;
+		this.is_done = is_done;
 	}
 
-	
-	public String getCheck() {
-		return check;
+	public int getId() {
+		return id;
 	}
 
-
-	public void setCheck(String check) {
-		this.check = check;
+	public void setId(int id) {
+		this.id = id;
 	}
-
 
 	public String getTitle() {
 		return title;
@@ -42,14 +41,21 @@ public class IndexForm {
 		this.priority = priority;
 	}
 
-	public Date getLimit() {
-		return limit;
+	public Date getLimit_date() {
+		return limit_date;
 	}
 
-	public void setLimit(Date limit) {
-		this.limit = limit;
+	public void setLimit_date(Date limit_date) {
+		this.limit_date = limit_date;
 	}
-	
+
+	public boolean isDone() {
+		return is_done;
+	}
+
+	public void setDone(boolean is_done) {
+		this.is_done = is_done;
+	}
 	
 	
 }

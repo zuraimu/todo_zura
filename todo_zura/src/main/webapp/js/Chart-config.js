@@ -1,4 +1,6 @@
-window.addEventListener("DOMContentLoaded", function () {
+Chart.register(ChartDataLabels);
+
+window.addEventListener("DOMContentLoaded", function() {
 	if (!window.chartLabels || !window.chartValues) {
 		console.error("chartLabels または chartValues が未定義です");
 		return;
@@ -20,11 +22,27 @@ window.addEventListener("DOMContentLoaded", function () {
 		},
 		options: {
 			responsive: false,
+			animation: {
+				animateRotate: false
+			},
 			plugins: {
 				legend: {
 					position: 'bottom'
+				},
+				datalabels: {
+					color: '#fff',
+					font: {
+						weight: 'bold',
+						size: 14
+					},
+					formatter: function(value, context) {
+						return value; 
+					}
 				}
 			}
-		}
+			
+
+		},
+		plugins: [ChartDataLabels] 
 	});
 });

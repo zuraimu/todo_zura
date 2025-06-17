@@ -46,7 +46,7 @@
 		</div>
 	</div>
 	<!-- スクリプト読み込み -->
-	<%@ include file="/WEB-INF/jspf/include/script.jspf" %>
+	<%@ include file="/WEB-INF/jspf/include/readScript.jspf" %>
 </body>
 
 </html>
