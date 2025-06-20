@@ -13,14 +13,11 @@ INSERT INTO todo(title, priority, limit_date) VALUES
 	('テストテキスト','★★★','2015/06/20'),
 	('テストテキスト','★★',null);
 	
-	
-	
-	
-	
 CREATE TABLE account(
     id int PRIMARY KEY AUTO_INCREMENT,
     user varchar(20) NOT null,
     pass varchar(50) not null
 );
 	
-	
+		
+		
