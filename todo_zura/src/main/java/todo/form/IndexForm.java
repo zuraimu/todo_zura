@@ -1,4 +1,4 @@
-package todo;
+package todo.form;
 
 import java.sql.Date;
 

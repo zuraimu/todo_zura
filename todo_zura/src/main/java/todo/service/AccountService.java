@@ -1,9 +1,12 @@
-package todo;
+package todo.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import todo.form.AccountForm;
+import todo.util.Util;
 
 public class AccountService {
 	//レコードを追加

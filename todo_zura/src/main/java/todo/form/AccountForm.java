@@ -1,4 +1,4 @@
-package todo;
+package todo.form;
 
 public class AccountForm {
 	String user;

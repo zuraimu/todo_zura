@@ -1,4 +1,4 @@
-package todo;
+package todo.util;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
